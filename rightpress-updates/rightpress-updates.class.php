@@ -15,7 +15,7 @@ if (!class_exists('RightPress_Updates_7119279')) {
 
 final class RightPress_Updates_7119279
 {
-
+    public $plugin_version;
     private static $envato_id = 7119279;
 
     /***************************************************************************

@@ -881,7 +881,7 @@ class RP_WCDPD_Settings
         $config = array(
             'id'                        => $prefixed_key,
             'name'                      => 'rp_wcdpd_settings[' . $prefixed_key . ']',
-            'value'                     => htmlspecialchars(RP_WCDPD_Settings::get($args['field_key'])),
+            'value'                     => htmlspecialchars((string) RP_WCDPD_Settings::get($args['field_key'])),
             'class'                     => 'rp_wcdpd_setting rp_wcdpd_field_long ' . (!empty($args['field']['class']) ? $args['field']['class'] : ''),
             'title'                     => !empty($args['title']) ? $args['title'] : '',
             'placeholder'               => (isset($args['field']['placeholder']) && !RightPress_Help::is_empty($args['field']['placeholder'])) ? $args['field']['placeholder'] : '',
