@@ -109,7 +109,8 @@ final class RightPress_Product_Price_Test
 
         // Unset product flag
         if ($instance->product_flagged) {
-            unset($product->rightpress_in_cart);
+            //NEW CODE
+            RightPress_Product_Price::unset_in_cart_flag($product);
             $instance->product_flagged = false;
         }
 
@@ -187,7 +188,8 @@ final class RightPress_Product_Price_Test
                 else {
 
                     // Flag product in cart
-                    $product->rightpress_in_cart    = $cart_item_key;
+                    //NEW CODE
+                    RightPress_Product_Price::set_in_cart_flag($product, $cart_item_key);
                     $this->product_flagged          = true;
 
                     // Get price to let currency switchers change product price (WCDPD issue #621)

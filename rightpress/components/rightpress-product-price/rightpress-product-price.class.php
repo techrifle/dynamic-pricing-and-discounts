@@ -12,7 +12,7 @@ defined('ABSPATH') || exit;
  */
 final class RightPress_Product_Price
 {
-
+    private static $rightpress_in_cart_flags = array();
     // Singleton control
     protected static $instance = false; public static function get_instance() { return self::$instance ? self::$instance : (self::$instance = new self()); }
 
@@ -122,10 +122,40 @@ final class RightPress_Product_Price
      * @param array $cart_item_data
      * @return array
      */
+
+    /**
+    * Change My By Prince Vishwakarma
+    * Set in cart flag for product object
+    */
+    public static function set_in_cart_flag($product, $key)
+    {
+        self::$rightpress_in_cart_flags[spl_object_hash($product)] = $key;
+    }
+
+    /**
+    * Get in cart flag for product object
+    */
+    public static function get_in_cart_flag($product)
+    {
+        $hash = spl_object_hash($product);
+        return isset(self::$rightpress_in_cart_flags[$hash]) ? self::$rightpress_in_cart_flags[$hash] : null;
+    }
+
+    /**
+    * Unset in cart flag for product object
+    */
+    public static function unset_in_cart_flag($product)
+    {
+        $hash = spl_object_hash($product);
+
+        if (isset(self::$rightpress_in_cart_flags[$hash])) {
+            unset(self::$rightpress_in_cart_flags[$hash]);
+        }
+    }     
     public function flag_product_in_cart($cart_item_data)
     {
 
-        $cart_item_data['data']->rightpress_in_cart = $cart_item_data['key'];
+        self::$rightpress_in_cart_flags[spl_object_hash($cart_item_data['data'])] = $cart_item_data['key'];
         return $cart_item_data;
     }
 
