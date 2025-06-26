@@ -216,7 +216,7 @@ final class RightPress_Product_Price_Cart
         }
 
         // Ensure product is in cart
-        if (empty($product->rightpress_in_cart)) {
+        if (self::get_in_cart_flag($product) === null) {
             return $price;
         }
 
@@ -226,7 +226,7 @@ final class RightPress_Product_Price_Cart
         }
 
         // Get cart item key
-        $cart_item_key = $product->rightpress_in_cart;
+        $cart_item_key = self::get_in_cart_flag($product);
 
         // Maybe refresh prepared cart item prices
         $this->maybe_refresh_prepared_cart_item_prices($cart_item_key);

@@ -65,7 +65,7 @@ final class RightPress_Product_Price_Router
         }
 
         // Cart item product
-        if (!empty($product->rightpress_in_cart)) {
+        if (RightPress_Product_Price::get_in_cart_flag($product) !== null) {
 
             return RightPress_Product_Price_Cart::get_instance()->maybe_change_price($price, $product);
         }

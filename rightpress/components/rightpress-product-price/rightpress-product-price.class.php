@@ -127,6 +127,21 @@ final class RightPress_Product_Price
     * Change My By Prince Vishwakarma
     * Set in cart flag for product object
     */
+
+    public function flag_product_in_cart($cart_item_data)
+    {
+
+        self::set_in_cart_flag($cart_item_data['data'], $cart_item_data['key']);
+        return $cart_item_data;
+    }
+    /**
+    * Set in cart flag for product object
+    *
+    * @access public
+    * @param object $product
+    * @param string $key
+    * @return void
+    */
     public static function set_in_cart_flag($product, $key)
     {
         self::$rightpress_in_cart_flags[spl_object_hash($product)] = $key;
@@ -134,6 +149,10 @@ final class RightPress_Product_Price
 
     /**
     * Get in cart flag for product object
+    *
+    * @access public
+    * @param object $product
+    * @return string|null
     */
     public static function get_in_cart_flag($product)
     {
@@ -143,6 +162,10 @@ final class RightPress_Product_Price
 
     /**
     * Unset in cart flag for product object
+    *
+    * @access public
+    * @param object $product
+    * @return void
     */
     public static function unset_in_cart_flag($product)
     {
@@ -151,12 +174,6 @@ final class RightPress_Product_Price
         if (isset(self::$rightpress_in_cart_flags[$hash])) {
             unset(self::$rightpress_in_cart_flags[$hash]);
         }
-    }     
-    public function flag_product_in_cart($cart_item_data)
-    {
-
-        self::$rightpress_in_cart_flags[spl_object_hash($cart_item_data['data'])] = $cart_item_data['key'];
-        return $cart_item_data;
     }
 
 

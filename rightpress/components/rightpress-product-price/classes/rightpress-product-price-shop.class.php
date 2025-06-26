@@ -129,7 +129,7 @@ final class RightPress_Product_Price_Shop
         }
 
         // Ensure product is not in cart
-        if (!empty($product->rightpress_in_cart)) {
+        if (RightPress_Product_Price::get_in_cart_flag($product) !== null) {
             return $price;
         }
 
